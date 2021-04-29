@@ -1,0 +1,13 @@
+.rounded > img {
+    width: 100%;
+    margin-bottom: 15px;
+}
+span.errorSpan {
+    display: inline-block;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: red;
+}
