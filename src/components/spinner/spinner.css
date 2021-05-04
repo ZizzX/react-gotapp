@@ -4,19 +4,24 @@
     100% { transform: rotate(360deg) }
   }
   .ldio-gqnfjgfo8jo div {
-    position: absolute;
+    /* position: absolute; */
     animation: ldio-gqnfjgfo8jo 1s linear infinite;
     width: 160px;
     height: 160px;
     border-radius: 50%;
-    box-shadow: 0 4px 0 0 #e15b64;
-    transform-origin: 80px 82px;
-    top: 20px;
-    left: 20px;
+    box-shadow: 0 4px 0 0 #041116;
+    transform-origin: center;
+    /*top: 20px;
+      left: 20px;*/
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    -webkit-animation: ldio-gqnfjgfo8jo 1s linear infinite;
 }
   .loadingio-spinner-eclipse-ee3b69jn4e {
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 250px;
     display: block;
     overflow: hidden;
     margin: 0 auto;
@@ -29,5 +34,9 @@
     transform: translateZ(0) scale(1);
     backface-visibility: hidden;
     transform-origin: 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }
   .ldio-gqnfjgfo8jo div { box-sizing: content-box; }

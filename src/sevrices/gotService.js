@@ -45,31 +45,32 @@ export default class GotService {
 
   _transformCharacter(char) {
     return {
-      name: char.name,
-      gender: char.gender,
-      born: char.born,
-      died: char.died,
-      culture: char.culture,
+      name: char.name ? char.name : "❌",
+      gender: char.gender ? char.gender : "❌",
+      born: char.born ? char.born : "❌",
+      died: char.died ? char.died : "❌",
+      culture: char.culture ? char.culture : "❌",
+      url: char.url,
     };
   }
 
   _transformHouse(house) {
     return {
-      name: house.name,
-      region: house.region,
-      words: house.words,
-      titles: house.titles,
-      overlord: house.overlord,
-      ancestralWeapons: house.ancestralWeapons,
+      name: house.name  ? house.name : "❌",
+      region: house.region  ? house.region : "❌",
+      words: house.words  ? house.words : "❌",
+      titles: house.titles  ? house.titles : "❌",
+      overlord: house.overlord  ? house.overlord : "❌",
+      ancestralWeapons: house.ancestralWeapons  ? house.ancestralWeapons : "❌",
     };
   }
 
   _transformBooks(book) {
     return {
-      name: book.name,
-      numberOfPages: book.numberOfPages,
-      publisher: book.publisher,
-      released: book.released,
+      name:  book.name ? book.name : "❌",
+      numberOfPages: book.numberOfPages ? book.numberOfPages : "❌",
+      publisher: book.publisher ? book.publisher : "❌",
+      released: book.released ? book.released : "❌",
     };
   }
 }

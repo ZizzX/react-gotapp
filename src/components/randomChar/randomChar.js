@@ -5,6 +5,8 @@ import Spinner from "../spinner";
 import ErrorMessage from "../errorMessage";
 
 const RandomBlock = styled.div`
+  font-size: 16px;
+  position: relative;
   background-color: #fff;
   padding: 25px 25px 15px 25px;
   margin-bottom: 40px;
@@ -20,10 +22,6 @@ const Term = styled.span`
 `;
 
 export default class RandomChar extends Component {
-  constructor() {
-    super();
-    this.updateChar();
-  }
   gotService = new gotService();
 
   state = {
@@ -31,6 +29,15 @@ export default class RandomChar extends Component {
     loading: true,
     error: false,
   };
+
+  componentDidMount() {
+    this.updateChar();
+    // this.timerId = setInterval(this.updateChar, 4500);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
 
   onCharLoaded = (char) => {
     this.setState({
@@ -46,9 +53,13 @@ export default class RandomChar extends Component {
     });
   };
 
-  updateChar() {
+  updateChar = () => {
     const id = Math.floor(Math.random() * 140 + 25); //25 - 140
     // const id = 5000000;
+    this.setState({
+      loading: true,
+    })
+
     this.gotService
       .getCharacter(id)
       .then(this.onCharLoaded)
@@ -84,19 +95,19 @@ const View = ({ char }) => {
       <ul className="list-group list-group-flush">
         <li className="list-group-item d-flex justify-content-between">
           <Term>Gender </Term>
-          <span>{gender === '' ? '❌' : gender}</span>
+          <span>{gender}</span>
         </li>
         <li className="list-group-item d-flex justify-content-between">
           <Term>Born </Term>
-          <span>{born === '' ? '❌' : born}</span>
+          <span>{born}</span>
         </li>
         <li className="list-group-item d-flex justify-content-between">
           <Term>Died </Term>
-          <span>{died === '' ? '❌' : died}</span>
+          <span>{died}</span>
         </li>
         <li className="list-group-item d-flex justify-content-between">
           <Term>Culture </Term>
-          <span>{culture === '' ? '❌' : culture}</span>
+          <span>{culture}</span>
         </li>
       </ul>
     </>
