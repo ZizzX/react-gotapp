@@ -1,2 +1,2 @@
-import CharDetails from './charDetails';
-export default CharDetails;
+import ItemDetails from './ItemDetails';
+export default ItemDetails;

@@ -25,36 +25,36 @@ const SelectError = styled.div`
   width: 100%;
 `;
 
-export default class CharDetails extends Component {
+export default class ItemDetails extends Component {
   gotService = new gotService();
 
   state = {
-    char: null,
+    item: null,
     loading: true,
     error: false,
   };
 
   componentDidMount() {
-    this.updateChar();
+    this.updateItem();
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.charId !== prevProps.charId) {
-      this.updateChar();
+    if (this.props.itemId !== prevProps.itemId) {
+      this.updateItem();
     }
   }
 
-  onCharDetailsLoaded = (char) => {
+  onItemDetailsLoaded = (item) => {
     this.setState({
-      char,
+      item,
       loading: false,
     })
   }
 
-  updateChar() {
-    const { charId } = this.props;
+  updateItem() {
+    const { itemId, getData } = this.props;
 
-    if (!charId) {
+    if (!itemId) {
       return;
     }
 
@@ -62,23 +62,23 @@ export default class CharDetails extends Component {
       loading: true,
     })
 
-    this.gotService.getCharacter(charId)
-      .then( this.onCharDetailsLoaded )
+    getData(itemId)
+      .then( this.onItemDetailsLoaded )
       .catch( () => this.onError())
   }
 
     onError() {
       this.setState({
-        char: null,
+        item: null,
         error: true
       })
     }
 
   render() {
 
-    const { char, loading, error } = this.state;
+    const { item, loading, error } = this.state;
 
-    if (!char) {
+    if (!item) {
       return <SelectError>Please select a character</SelectError>;
     }
 
@@ -90,7 +90,7 @@ export default class CharDetails extends Component {
       return <ErrorMessage/>
     }
 
-    const { name, born, gender, died, culture } = this.state.char;
+    const { name, born, gender, died, culture } = this.state.item;
 
 
     return (
