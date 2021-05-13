@@ -55,8 +55,8 @@ export default class App extends Component {
             </Col>
           </Row>
           <CharacterPage/>
-          <HousesPage/>
-          <BooksPage/>
+          {/* <HousesPage/> */}
+          {/* <BooksPage/> */}
         </Container>
       </>
     );
