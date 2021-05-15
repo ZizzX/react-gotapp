@@ -3,9 +3,7 @@ import { Col, Row, Container, Button } from "reactstrap";
 import Header from "../header";
 import RandomChar from "../randomChar";
 import ErrorMessage from "../errorMessage";
-import CharacterPage from '../pages/characterPage';
-import BooksPage from "../pages/booksPage";
-import HousesPage from "../pages/housesPage";
+import { CharacterPage, BooksPage, HousesPage } from "../pages";
 
 export default class App extends Component {
   state = {
@@ -28,12 +26,11 @@ export default class App extends Component {
     });
   };
 
-  
   render() {
     const { toggleChar, error } = this.state;
     const toggleBlock = toggleChar ? <RandomChar /> : null;
-    if(error) {
-      return <ErrorMessage/>
+    if (error) {
+      return <ErrorMessage />;
     }
     return (
       <>
@@ -54,9 +51,9 @@ export default class App extends Component {
               </Button>
             </Col>
           </Row>
-          <CharacterPage/>
-          {/* <HousesPage/> */}
-          {/* <BooksPage/> */}
+          <CharacterPage />
+          <HousesPage/>
+          <BooksPage/>
         </Container>
       </>
     );

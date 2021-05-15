@@ -6,6 +6,17 @@ import ErrorMessage from "../errorMessage";
 // import "./charDetails.css";
 import styled from "styled-components";
 
+const Field = ({ item, label, field }) => {
+  return (
+    <li className="list-group-item d-flex justify-content-between">
+      <span className="term">{ label }</span>
+      <span>{item[field]}</span>
+    </li>
+  );
+};
+
+export { Field };
+
 const CharDetailsItem = styled.div`
   background-color: #fff;
   padding: 25px 25px 15px 25px;
@@ -48,8 +59,8 @@ export default class ItemDetails extends Component {
     this.setState({
       item,
       loading: false,
-    })
-  }
+    });
+  };
 
   updateItem() {
     const { itemId, getData } = this.props;
@@ -60,65 +71,48 @@ export default class ItemDetails extends Component {
 
     this.setState({
       loading: true,
-    })
+    });
 
     getData(itemId)
-      .then( this.onItemDetailsLoaded )
-      .catch( () => this.onError())
+      .then(this.onItemDetailsLoaded)
+      .catch(() => this.onError());
   }
 
-    onError() {
-      this.setState({
-        item: null,
-        error: true
-      })
-    }
+  onError() {
+    this.setState({
+      item: null,
+      error: true,
+    });
+  }
 
   render() {
-
     const { item, loading, error } = this.state;
 
     if (!item) {
       return <SelectError>Please select a character</SelectError>;
     }
 
-    if(loading) {
-      return <Spinner/>
+    if (loading) {
+      return <Spinner />;
     }
 
-    if(error) {
-      return <ErrorMessage/>
+    if (error) {
+      return <ErrorMessage />;
     }
 
-    const { name, born, gender, died, culture } = this.state.item;
-
+    const { name } = this.state.item;
 
     return (
-
       <CharDetailsItem className="char-details rounded">
-
         <h4>{name}</h4>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item d-flex justify-content-between">
-            <span className="term">Gender</span>
-            <span>{gender}</span>
-          </li>
-          <li className="list-group-item d-flex justify-content-between">
-            <span className="term">Born</span>
-            <span>{born}</span>
-          </li>
-          <li className="list-group-item d-flex justify-content-between">
-            <span className="term">Died</span>
-            <span>{died}</span>
-          </li>
-          <li className="list-group-item d-flex justify-content-between">
-            <span className="term">Culture</span>
-            <span>{culture}</span>
-          </li>
+          {
+            React.Children.map(this.props.children, (child) => {
+              return React.cloneElement(child, {item})
+            })
+          }
         </ul>
-
       </CharDetailsItem>
-
     );
   }
 }

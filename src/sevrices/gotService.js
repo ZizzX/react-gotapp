@@ -47,7 +47,7 @@ export default class GotService {
     if (data) {
       return data;
     } else {
-      return "❌";
+      return "no data :(";
     }
   }
 
@@ -55,6 +55,11 @@ export default class GotService {
     const idRegExp = /\/([0-9]*$)/;
     return item.url.match(idRegExp)[1];
   };
+
+  _convertTime = (time) => {
+    const newTime = new Date(Date.parse(time));
+    return newTime;
+  }
 
   _transformCharacter = (char) => {
     return {
@@ -84,7 +89,7 @@ export default class GotService {
       name: this.isSet(book.name),
       numberOfPages: this.isSet(book.numberOfPages),
       publisher: this.isSet(book.publisher),
-      released: this.isSet(book.released),
+      released: new Date(this.isSet(book.released)).toLocaleDateString(),
       id: this._extractID(book),
     };
   };

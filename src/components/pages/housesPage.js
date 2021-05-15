@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import ErrorMessage from "../errorMessage";
 import ItemList from "../itemList";
-import ItemDetails from "../charDetails";
+import ItemDetails, { Field } from "../itemDetails/ItemDetails";
 import gotService from "../../sevrices/gotService";
 import RowBlock from "../rowBlock";
-
 
 export default class HousesPage extends Component {
   gotService = new gotService();
@@ -13,6 +12,12 @@ export default class HousesPage extends Component {
     selectedItem: null,
     error: false,
   };
+
+  componentDidMount() {
+    let id = Math.floor(10 + Math.random() * (140 + 1 - 10));
+
+    this.setState({ selectedItem: id });
+  }
 
   componentDidCatch() {
     this.setState({
@@ -42,9 +47,15 @@ export default class HousesPage extends Component {
     );
 
     const itemDetail = (
-      <ItemDetails 
-        itemId={this.state.selectedItem} 
-        getData={this.gotService.getHouse}/>
+      <ItemDetails
+        itemId={this.state.selectedItem}
+        getData={this.gotService.getHouse}
+      >
+        <Field label="Region" field="region" />
+        <Field label="Words" field="words" />
+        <Field label="Titles" field="titles" />
+        <Field label="Ancestral Weapons" field="ancestralWeapons" />
+      </ItemDetails>
     );
 
     return <RowBlock left={itemList} right={itemDetail} />;

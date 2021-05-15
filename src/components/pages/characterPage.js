@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ErrorMessage from "../errorMessage";
 import ItemList from "../itemList";
-import ItemDetails from "../charDetails";
+import ItemDetails, { Field } from "../itemDetails/ItemDetails";
 import gotService from "../../sevrices/gotService";
 import RowBlock from "../rowBlock";
 
@@ -43,7 +43,7 @@ export default class CharacterPage extends Component {
         onItemSelected={this.onItemSelected}
         getData={this.gotService.getAllCharacters}
         renderItem={(item) =>
-          `${item.name} - "${item.gender}" - "${item.culture}"`
+          `${item.name} - "${item.gender}"`
         }
       />
     );
@@ -51,8 +51,13 @@ export default class CharacterPage extends Component {
     const itemDetail = (
       <ItemDetails
         itemId={this.state.selectedItem}
-        getData={this.gotService.getCharacter}
-      />
+        getData={this.gotService.getCharacter}>
+        <Field label="Name" field="name"/>
+        <Field label="Gender" field="gender"/>
+        <Field label="Born" field="born"/>
+        <Field label="Died" field="died"/>
+        <Field label="Culture" field="culture"/>
+      </ItemDetails>
     );
 
     return <RowBlock left={itemList} right={itemDetail} />;
