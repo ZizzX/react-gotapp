@@ -4,6 +4,14 @@ import Header from "../header";
 import RandomChar from "../randomChar";
 import ErrorMessage from "../errorMessage";
 import { CharacterPage, BooksPage, HousesPage } from "../pages";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 
 export default class App extends Component {
   state = {
@@ -33,7 +41,8 @@ export default class App extends Component {
       return <ErrorMessage />;
     }
     return (
-      <>
+      <Router>
+        <div>
         <Container>
           <Header />
         </Container>
@@ -51,11 +60,16 @@ export default class App extends Component {
               </Button>
             </Col>
           </Row>
-          <CharacterPage />
-          <HousesPage/>
-          <BooksPage/>
+          <Switch>
+            <Route path="/character" component={CharacterPage}/>
+            <Route path="/houses" component={BooksPage}/>
+            <Route path="/books" component={HousesPage}/>
+            {/* <Route path="/houses/:id" component={} ></Route> */}
+          </Switch>
+          
         </Container>
-      </>
+      </div>
+      </Router>
     );
   }
 }
