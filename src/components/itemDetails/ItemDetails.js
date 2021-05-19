@@ -27,14 +27,14 @@ const CharDetailsItem = styled.div`
   }
 `;
 
-const SelectError = styled.div`
-  color: #111111;
-  text-align: center;
-  font-size: 2rem;
-  background-color: #ffffff;
-  padding: 25px;
-  width: 100%;
-`;
+// const SelectError = styled.div`
+//   color: #111111;
+//   text-align: center;
+//   font-size: 2rem;
+//   background-color: #ffffff;
+//   padding: 25px;
+//   width: 100%;
+// `;
 
 export default class ItemDetails extends Component {
   gotService = new gotService();
@@ -88,9 +88,9 @@ export default class ItemDetails extends Component {
   render() {
     const { item, loading, error } = this.state;
 
-    if (!item) {
-      return <SelectError>Please select a character</SelectError>;
-    }
+    // if (!item) {
+    //   return <SelectError>Please select a character</SelectError>;
+    // }
 
     if (loading) {
       return <Spinner />;

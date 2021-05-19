@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Link} from "react-router-dom";
-import { CharacterPage, BooksPage, HousesPage } from "../pages";;
 
 const HeaderBlock = styled.div`
     display: flex;
@@ -38,13 +37,13 @@ const Header = () => {
             </HeaderTitle>
             <HeaderLinks>
                 <li>
-                    <Link to="/character" >Characters</Link>
+                    <Link to="/characters/" >Characters</Link>
                 </li>
                 <li>
-                    <Link to="/houses" >Houses</Link>
+                    <Link to="/houses/" >Houses</Link>
                 </li>
                 <li>
-                    <Link to="/books" >Books</Link>   
+                    <Link to="/books/" >Books</Link>   
                 </li>
             </HeaderLinks>
         </HeaderBlock>
